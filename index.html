@@ -1,35 +1,133 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Platinum+ Optimizer for Windows</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platinum+ Optimizer</title>
   <style>
     body {
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #1e1e2f, #2c2c3d);
+      background: linear-gradient(to bottom, #1c1c2b, #0f0f17);
       color: white;
       text-align: center;
-      padding: 100px 20px;
     }
+
+    header {
+      padding: 80px 20px 40px;
+      animation: fadeIn 1.2s ease-out;
+    }
+
     h1 {
       font-size: 3em;
-      animation: fadeInUp 1.5s ease-out;
+      color: #00ffd5;
+      margin-bottom: 10px;
     }
-    p {
-      font-size: 1.3em;
-      max-width: 600px;
-      margin: 20px auto;
-      line-height: 1.6;
+
+    p.tagline {
+      font-size: 1.2em;
+      color: #ccc;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
+
+    .versions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 60px 20px;
+    }
+
+    .version-box {
+      background: #2b2b3d;
+      border-radius: 10px;
+      padding: 30px 20px;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(0, 255, 213, 0.1);
+      animation: slideIn 1s ease-out;
+    }
+
+    .version-box h2 {
+      color: #00ffd5;
+    }
+
+    .features {
+      text-align: left;
+      margin: 20px 0;
+      font-size: 0.95em;
+      color: #ddd;
+    }
+
+    .features li {
+      margin: 8px 0;
+    }
+
+    .cta-button {
+      background: #00ffd5;
+      color: #000;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .cta-button:hover {
+      background: #00cfae;
+    }
+
+    footer {
+      padding: 40px 10px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <h1>Platinum+ Optimizer</h1>
-  <p>Ottimizza il tuo PC Windows con un clic. Pulizia, velocità e performance in un’unica soluzione.</p>
+
+  <header>
+    <h1>Platinum+ Optimizer</h1>
+    <p class="tagline">Ottimizza il tuo PC. Scegli la versione giusta per te.</p>
+  </header>
+
+  <section class="versions">
+
+    <div class="version-box">
+      <h2>🎯 Versione 4.0 Free</h2>
+      <ul class="features">
+        <li>✔ Ottimizzazione di base</li>
+        <li>✔ Pulizia file temporanei</li>
+        <li>✔ Avvio più rapido</li>
+      </ul>
+      <button class="cta-button" onclick="alert('Download gratuito non ancora disponibile')">Scarica Gratis</button>
+    </div>
+
+    <div class="version-box">
+      <h2>💎 Versione 5.0 Premium</h2>
+      <ul class="features">
+        <li>✔ Tutto della versione Free</li>
+        <li>✔ Ottimizzazione RAM e CPU</li>
+        <li>✔ Aggiornamenti automatici</li>
+        <li>✔ Modalità gaming</li>
+      </ul>
+      <button class="cta-button" onclick="alert('Acquisto non ancora disponibile')">Acquista Premium</button>
+    </div>
+
+  </section>
+
+  <footer>
+    © 2025 Platinum+ Optimizer — Tutti i diritti riservati.
+  </footer>
+
 </body>
 </html>
