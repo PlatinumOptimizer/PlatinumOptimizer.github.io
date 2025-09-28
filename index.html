@@ -1,95 +1,232 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Platinum+ Optimizer</title>
   <style>
+    /* Reset base */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #1c1c2b, #0f0f17);
-      color: white;
-      text-align: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-behavior: smooth;
     }
-
     header {
-      padding: 80px 20px 40px;
-      animation: fadeIn 1.2s ease-out;
+      padding: 60px 20px 40px;
+      text-align: center;
+      animation: fadeDown 1s ease forwards;
     }
-
-    h1 {
-      font-size: 3em;
+    header h1 {
+      font-size: 3.8rem;
       color: #00ffd5;
       margin-bottom: 10px;
+      text-shadow: 0 0 10px #00ffd5;
     }
-
-    p.tagline {
-      font-size: 1.2em;
+    header p {
+      font-size: 1.3rem;
       color: #ccc;
     }
 
+    /* Image section */
+    .hero-image {
+      max-width: 500px;
+      margin: 30px auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 255, 213, 0.4);
+      animation: fadeUp 1.3s ease forwards;
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    /* Versions section */
     .versions {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 40px;
-      padding: 60px 20px;
+      margin: 50px 20px 60px;
+      animation: fadeUp 1.6s ease forwards;
     }
-
-    .version-box {
-      background: #2b2b3d;
-      border-radius: 10px;
-      padding: 30px 20px;
-      width: 300px;
-      box-shadow: 0 0 20px rgba(0, 255, 213, 0.1);
-      animation: slideIn 1s ease-out;
+    .version-card {
+      background: #222239;
+      border-radius: 12px;
+      width: 320px;
+      padding: 30px 25px;
+      box-shadow: 0 0 25px rgba(0, 255, 213, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
     }
-
-    .version-box h2 {
+    .version-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 45px #00ffd5;
+    }
+    .version-card h2 {
+      color: #00ffd5;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    .version-card ul {
+      text-align: left;
+      color: #ccc;
+      margin-bottom: 25px;
+      list-style: none;
+    }
+    .version-card ul li {
+      margin: 10px 0;
+      padding-left: 18px;
+      position: relative;
+      font-size: 1.05rem;
+    }
+    .version-card ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
       color: #00ffd5;
     }
-
-    .features {
-      text-align: left;
-      margin: 20px 0;
-      font-size: 0.95em;
-      color: #ddd;
-    }
-
-    .features li {
-      margin: 8px 0;
-    }
-
-    .cta-button {
+    .btn {
       background: #00ffd5;
       color: #000;
+      font-weight: 700;
       border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
+      padding: 14px 24px;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 1.1rem;
       cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
+      transition: background 0.25s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
     }
-
-    .cta-button:hover {
+    .btn:hover {
       background: #00cfae;
     }
 
+    /* Reviews section */
+    .reviews {
+      max-width: 900px;
+      width: 90%;
+      background: #222239;
+      border-radius: 12px;
+      padding: 40px 30px;
+      margin-bottom: 80px;
+      box-shadow: 0 0 40px rgba(0, 255, 213, 0.12);
+      animation: fadeUp 1.9s ease forwards;
+    }
+    .reviews h3 {
+      color: #00ffd5;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      text-align: center;
+      text-shadow: 0 0 10px #00ffd5;
+    }
+    .review-item {
+      background: #1b1b2d;
+      border-radius: 10px;
+      padding: 20px 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0,255,213,0.05);
+      font-style: italic;
+      color: #ddd;
+      position: relative;
+    }
+    .review-item:last-child {
+      margin-bottom: 0;
+    }
+    .review-stars {
+      color: #00ffd5;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .review-author {
+      font-weight: 700;
+      color: #00ffd5;
+      margin-top: 10px;
+      text-align: right;
+      font-style: normal;
+    }
+
+    /* Download section */
+    .download {
+      background: #111122;
+      width: 100%;
+      padding: 60px 20px;
+      text-align: center;
+      animation: fadeUp 2.2s ease forwards;
+    }
+    .download h3 {
+      font-size: 2.3rem;
+      color: #00ffd5;
+      margin-bottom: 30px;
+      text-shadow: 0 0 15px #00ffd5;
+    }
+    .download-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .download-buttons a {
+      background: #00ffd5;
+      color: #000;
+      font-weight: 700;
+      padding: 18px 32px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      text-decoration: none;
+      box-shadow: 0 0 12px #00ffd5;
+      transition: background 0.25s ease;
+    }
+    .download-buttons a:hover {
+      background: #00cfae;
+    }
+
+    /* Footer */
     footer {
-      padding: 40px 10px;
-      font-size: 0.9em;
-      color: #666;
+      padding: 30px 10px;
+      font-size: 0.9rem;
+      color: #555;
+      text-align: center;
+      background: #111122;
+      width: 100%;
+      box-shadow: inset 0 1px 5px #000;
+      user-select: none;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Animations */
+    @keyframes fadeDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(40px);}
+      to {opacity: 1; transform: translateY(0);}
     }
 
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .versions {
+        flex-direction: column;
+        align-items: center;
+      }
+      .version-card {
+        width: 90%;
+      }
+      .download-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
   </style>
 </head>
@@ -97,37 +234,43 @@
 
   <header>
     <h1>Platinum+ Optimizer</h1>
-    <p class="tagline">Ottimizza il tuo PC. Scegli la versione giusta per te.</p>
+    <p>Ottimizza il tuo PC Windows facilmente con le versioni Free e Premium.</p>
   </header>
 
-  <section class="versions">
+  <div class="hero-image" aria-label="Immagine del software Platinum+ Optimizer">
+    <img src="https://i.imgur.com/zy2tFsy.png" alt="Screenshot del software Platinum+ Optimizer" />
+  </div>
 
-    <div class="version-box">
-      <h2>🎯 Versione 4.0 Free</h2>
-      <ul class="features">
-        <li>✔ Ottimizzazione di base</li>
-        <li>✔ Pulizia file temporanei</li>
-        <li>✔ Avvio più rapido</li>
+  <section class="versions" aria-label="Versioni del software">
+    <div class="version-card" role="region" aria-labelledby="free-title">
+      <h2 id="free-title">🎯 Versione 4.0 Free</h2>
+      <ul>
+        <li>Ottimizzazione di base</li>
+        <li>Pulizia file temporanei</li>
+        <li>Avvio più rapido</li>
       </ul>
-      <button class="cta-button" onclick="alert('Download gratuito non ancora disponibile')">Scarica Gratis</button>
+      <button class="btn" onclick="alert('Download gratuito non ancora disponibile')">Scarica Gratis</button>
     </div>
-
-    <div class="version-box">
-      <h2>💎 Versione 5.0 Premium</h2>
-      <ul class="features">
-        <li>✔ Tutto della versione Free</li>
-        <li>✔ Ottimizzazione RAM e CPU</li>
-        <li>✔ Aggiornamenti automatici</li>
-        <li>✔ Modalità gaming</li>
+    <div class="version-card" role="region" aria-labelledby="premium-title">
+      <h2 id="premium-title">💎 Versione 5.0 Premium</h2>
+      <ul>
+        <li>Tutto della versione Free</li>
+        <li>Ottimizzazione RAM e CPU</li>
+        <li>Aggiornamenti automatici</li>
+        <li>Modalità gaming</li>
       </ul>
-      <button class="cta-button" onclick="alert('Acquisto non ancora disponibile')">Acquista Premium</button>
+      <button class="btn" onclick="alert('Acquisto non ancora disponibile')">Acquista Premium</button>
     </div>
-
   </section>
 
-  <footer>
-    © 2025 Platinum+ Optimizer — Tutti i diritti riservati.
-  </footer>
-
-</body>
-</html>
+  <section class="reviews" aria-label="Recensioni utenti">
+    <h3>Recensioni</h3>
+    <article class="review-item">
+      <div class="review-stars">★★★★★</div>
+      <p>“Platinum+ Optimizer ha migliorato notevolmente la velocità del mio PC!”</p>
+      <footer class="review-author">— Luca R.</footer>
+    </article>
+    <article class="review-item">
+      <div class="review-stars">★★★★☆</div>
+      <p>“La versione Premium è davvero potente e facile da usare.”</p>
+      <footer class="
