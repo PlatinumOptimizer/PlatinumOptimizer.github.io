@@ -1,276 +1,429 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Platinum+ Optimizer</title>
-  <style>
-    /* Reset base */
-    * {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
-      color: #eee;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      scroll-behavior: smooth;
-    }
-    header {
-      padding: 60px 20px 40px;
-      text-align: center;
-      animation: fadeDown 1s ease forwards;
-    }
-    header h1 {
-      font-size: 3.8rem;
-      color: #00ffd5;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px #00ffd5;
-    }
-    header p {
-      font-size: 1.3rem;
-      color: #ccc;
-    }
-
-    /* Image section */
-    .hero-image {
-      max-width: 500px;
-      margin: 30px auto;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 255, 213, 0.4);
-      animation: fadeUp 1.3s ease forwards;
-    }
-    .hero-image img {
-      width: 100%;
-      border-radius: 15px;
-    }
-
-    /* Versions section */
-    .versions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin: 50px 20px 60px;
-      animation: fadeUp 1.6s ease forwards;
-    }
-    .version-card {
-      background: #222239;
-      border-radius: 12px;
-      width: 320px;
-      padding: 30px 25px;
-      box-shadow: 0 0 25px rgba(0, 255, 213, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-    }
-    .version-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 0 45px #00ffd5;
-    }
-    .version-card h2 {
-      color: #00ffd5;
-      font-size: 2rem;
-      margin-bottom: 15px;
-    }
-    .version-card ul {
-      text-align: left;
-      color: #ccc;
-      margin-bottom: 25px;
-      list-style: none;
-    }
-    .version-card ul li {
-      margin: 10px 0;
-      padding-left: 18px;
-      position: relative;
-      font-size: 1.05rem;
-    }
-    .version-card ul li::before {
-      content: "✔";
-      position: absolute;
-      left: 0;
-      color: #00ffd5;
-    }
-    .btn {
-      background: #00ffd5;
-      color: #000;
-      font-weight: 700;
-      border: none;
-      padding: 14px 24px;
-      border-radius: 8px;
-      width: 100%;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.25s ease;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-    }
-    .btn:hover {
-      background: #00cfae;
-    }
-
-    /* Reviews section */
-    .reviews {
-      max-width: 900px;
-      width: 90%;
-      background: #222239;
-      border-radius: 12px;
-      padding: 40px 30px;
-      margin-bottom: 80px;
-      box-shadow: 0 0 40px rgba(0, 255, 213, 0.12);
-      animation: fadeUp 1.9s ease forwards;
-    }
-    .reviews h3 {
-      color: #00ffd5;
-      font-size: 2rem;
-      margin-bottom: 25px;
-      text-align: center;
-      text-shadow: 0 0 10px #00ffd5;
-    }
-    .review-item {
-      background: #1b1b2d;
-      border-radius: 10px;
-      padding: 20px 25px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(0,255,213,0.05);
-      font-style: italic;
-      color: #ddd;
-      position: relative;
-    }
-    .review-item:last-child {
-      margin-bottom: 0;
-    }
-    .review-stars {
-      color: #00ffd5;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-    .review-author {
-      font-weight: 700;
-      color: #00ffd5;
-      margin-top: 10px;
-      text-align: right;
-      font-style: normal;
-    }
-
-    /* Download section */
-    .download {
-      background: #111122;
-      width: 100%;
-      padding: 60px 20px;
-      text-align: center;
-      animation: fadeUp 2.2s ease forwards;
-    }
-    .download h3 {
-      font-size: 2.3rem;
-      color: #00ffd5;
-      margin-bottom: 30px;
-      text-shadow: 0 0 15px #00ffd5;
-    }
-    .download-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-    .download-buttons a {
-      background: #00ffd5;
-      color: #000;
-      font-weight: 700;
-      padding: 18px 32px;
-      border-radius: 10px;
-      font-size: 1.1rem;
-      text-decoration: none;
-      box-shadow: 0 0 12px #00ffd5;
-      transition: background 0.25s ease;
-    }
-    .download-buttons a:hover {
-      background: #00cfae;
-    }
-
-    /* Footer */
-    footer {
-      padding: 30px 10px;
-      font-size: 0.9rem;
-      color: #555;
-      text-align: center;
-      background: #111122;
-      width: 100%;
-      box-shadow: inset 0 1px 5px #000;
-      user-select: none;
-    }
-
-    /* Animations */
-    @keyframes fadeDown {
-      from {opacity: 0; transform: translateY(-30px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-    @keyframes fadeUp {
-      from {opacity: 0; transform: translateY(40px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* Responsive */
-    @media (max-width: 700px) {
-      .versions {
-        flex-direction: column;
-        align-items: center;
-      }
-      .version-card {
-        width: 90%;
-      }
-      .download-buttons {
-        flex-direction: column;
-        gap: 15px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platinum Optimizer - Massime Prestazioni PC</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">⚡</div>
+                <span>Platinum</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#features" class="nav-link">Funzionalità</a>
+                <a href="#benchmarks" class="nav-link">Benchmark</a>
+                <a href="#pricing" class="nav-link">Prezzi</a>
+                <a href="#contact" class="nav-link">Contatti</a>
+            </div>
+            <div class="nav-actions">
+                <a href="https://t.me/c/2589647133/105" class="btn btn-primary">Scarica ora</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-  <header>
-    <h1>Platinum+ Optimizer</h1>
-    <p>Ottimizza il tuo PC Windows facilmente con le versioni Free e Premium.</p>
-  </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>⚡ Performance Estreme</span>
+                </div>
+                <h1 class="hero-title">
+                    Potenzia il tuo PC
+                    <span class="gradient-text">oltre i limiti</span>
+                </h1>
+                <p class="hero-description">
+                    Ottimizzazioni avanzate per gaming, streaming e lavoro. 
+                    Massimizza CPU, GPU e RAM con tecnologie all'avanguardia.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">+40%</div>
+                        <div class="stat-label">Prestazioni Gaming</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">-60%</div>
+                        <div class="stat-label">Tempo di Avvio</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">-50%</div>
+                        <div class="stat-label">Latenza</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://t.me/c/2589647133/105" class="btn btn-primary btn-large">
+                        <i class="fas fa-download"></i> Scarica Gratis
+                    </a>
+                    <a href="#features" class="btn btn-secondary btn-large">
+                        <i class="fas fa-chart-line"></i> Scopri di più
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="pc-animation">
+                    <div class="monitor">
+                        <div class="screen">
+                            <div class="performance-metrics">
+                                <div class="metric">
+                                    <span class="label">CPU</span>
+                                    <div class="bar">
+                                        <div class="fill cpu-fill"></div>
+                                    </div>
+                                    <span class="value">85%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="label">GPU</span>
+                                    <div class="bar">
+                                        <div class="fill gpu-fill"></div>
+                                    </div>
+                                    <span class="value">78%</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="label">RAM</span>
+                                    <div class="bar">
+                                        <div class="fill ram-fill"></div>
+                                    </div>
+                                    <span class="value">92%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="hero-image" aria-label="Immagine del software Platinum+ Optimizer">
-    <img src="https://i.imgur.com/zy2tFsy.png" alt="Screenshot del software Platinum+ Optimizer" />
-  </div>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ottimizzazioni Avanzate</h2>
+                <p class="section-subtitle">Tecnologie proprietarie per massimizzare ogni componente del tuo sistema</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>CPU Optimization</h3>
+                    <p>Tuning avanzato processori AMD e Intel per massime prestazioni single e multi-core</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>GPU Boost</h3>
+                    <p>Miglioramenti dedicati per schede NVIDIA, AMD e Intel Graphics</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Network Optimization</h3>
+                    <p>Riduzione ping e latenza per gaming e streaming ultra-fluido</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <h3>System Cleanup</h3>
+                    <p>Pulizia profonda di file temporanei e registro di sistema</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="versions" aria-label="Versioni del software">
-    <div class="version-card" role="region" aria-labelledby="free-title">
-      <h2 id="free-title">🎯 Versione 4.0 Free</h2>
-      <ul>
-        <li>Ottimizzazione di base</li>
-        <li>Pulizia file temporanei</li>
-        <li>Avvio più rapido</li>
-      </ul>
-      <button class="btn" onclick="alert('Download gratuito non ancora disponibile')">Scarica Gratis</button>
-    </div>
-    <div class="version-card" role="region" aria-labelledby="premium-title">
-      <h2 id="premium-title">💎 Versione 5.0 Premium</h2>
-      <ul>
-        <li>Tutto della versione Free</li>
-        <li>Ottimizzazione RAM e CPU</li>
-        <li>Aggiornamenti automatici</li>
-        <li>Modalità gaming</li>
-      </ul>
-      <button class="btn" onclick="alert('Acquisto non ancora disponibile')">Acquista Premium</button>
-    </div>
-  </section>
+    <!-- Benchmark Section -->
+    <section id="benchmarks" class="benchmarks">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Confronto Prestazioni</h2>
+                <p class="section-subtitle">Risultati reali misurati su sistemi di test</p>
+            </div>
 
-  <section class="reviews" aria-label="Recensioni utenti">
-    <h3>Recensioni</h3>
-    <article class="review-item">
-      <div class="review-stars">★★★★★</div>
-      <p>“Platinum+ Optimizer ha migliorato notevolmente la velocità del mio PC!”</p>
-      <footer class="review-author">— Luca R.</footer>
-    </article>
-    <article class="review-item">
-      <div class="review-stars">★★★★☆</div>
-      <p>“La versione Premium è davvero potente e facile da usare.”</p>
-      <footer class="
+            <div class="benchmark-comparison">
+                <div class="comparison-grid">
+                    <div class="comparison-card" data-aos="fade-up">
+                        <div class="card-header">
+                            <h3>Sistema Stock</h3>
+                            <div class="card-badge stock">Base</div>
+                        </div>
+                        <div class="benchmark-results">
+                            <div class="result-item">
+                                <span class="label">Avvio Sistema</span>
+                                <span class="value">45s</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">FPS Gaming</span>
+                                <span class="value">60</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">Utilizzo RAM</span>
+                                <span class="value">4.2GB</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">Latenza</span>
+                                <span class="value">45ms</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-header">
+                            <h3>Tweak 4.0</h3>
+                            <div class="card-badge free">Gratis</div>
+                        </div>
+                        <div class="benchmark-results">
+                            <div class="result-item">
+                                <span class="label">Avvio Sistema</span>
+                                <span class="value">28s <span class="improvement">-38%</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">FPS Gaming</span>
+                                <span class="value">72 <span class="improvement">+20%</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">Utilizzo RAM</span>
+                                <span class="value">3.1GB <span class="improvement">-26%</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">Latenza</span>
+                                <span class="value">32ms <span class="improvement">-29%</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card-header">
+                            <h3>Tweak 5.0</h3>
+                            <div class="card-badge premium">Premium</div>
+                        </div>
+                        <div class="benchmark-results">
+                            <div class="result-item">
+                                <span class="label">Avvio Sistema</span>
+                                <span class="value">18s <span class="improvement">-60%</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">FPS Gaming</span>
+                                <span class="value">84 <span class="improvement">+40%</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">Utilizzo RAM</span>
+                                <span class="value">2.4GB <span class="improvement">-43%</span></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="label">Latenza</span>
+                                <span class="value">22ms <span class="improvement">-51%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Scegli la tua versione</h2>
+                <p class="section-subtitle">Due soluzioni, un obiettivo: massimizzare le prestazioni</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card" data-aos="fade-up">
+                    <div class="card-header">
+                        <h3>Tweak 4.0</h3>
+                        <div class="price">Gratis</div>
+                        <p class="price-description">Ottimizzazioni essenziali</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> CPU & GPU Optimization</li>
+                        <li><i class="fas fa-check"></i> Network Optimization</li>
+                        <li><i class="fas fa-check"></i> System Cleanup</li>
+                        <li><i class="fas fa-check"></i> Supporto base</li>
+                        <li><i class="fas fa-times"></i> Ottimizzazioni avanzate</li>
+                        <li><i class="fas fa-times"></i> Supporto remoto</li>
+                    </ul>
+                    <a href="https://t.me/c/2589647133/105" class="btn btn-primary btn-full">
+                        <i class="fas fa-download"></i> Scarica Gratis
+                    </a>
+                </div>
+                
+                <div class="pricing-card premium" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-badge">Più Popolare</div>
+                    <div class="card-header">
+                        <h3>Tweak 5.0</h3>
+                        <div class="price">15€</div>
+                        <p class="price-description">Una tantum</p>
+                    </div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Tutte le funzioni 4.0</li>
+                        <li><i class="fas fa-check"></i> XCon Complete Suite</li>
+                        <li><i class="fas fa-check"></i> Supporto remoto 24/7</li>
+                        <li><i class="fas fa-check"></i> Aggiornamenti gratuiti</li>
+                        <li><i class="fas fa-check"></i> Canali Telegram esclusivi</li>
+                        <li><i class="fas fa-check"></i> Ottimizzazioni personalizzate</li>
+                    </ul>
+                    <a href="https://t.me/aledect" class="btn btn-secondary btn-full">
+                        <i class="fab fa-telegram"></i> Acquista Ora - 15€
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contattaci</h2>
+                <p class="section-subtitle">Siamo qui per aiutarti a massimizzare le prestazioni del tuo sistema</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card" data-aos="fade-up">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>ALEDECT</h3>
+                    <p>Sviluppatore principale e supporto tecnico specializzato in ottimizzazioni avanzate</p>
+                    <a href="https://t.me/aledect" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-telegram"></i> Contatta su Telegram
+                    </a>
+                </div>
+
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>STEFANO83223</h3>
+                    <p>Sviluppatore e assistenza clienti dedicata per massimizzare le tue prestazioni</p>
+                    <a href="https://t.me/STEFANO83223" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-telegram"></i> Contatta su Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Domande Frequenti</h2>
+                <p class="section-subtitle">Tutto quello che devi sapere su Platinum Optimizer</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>È sicuro usare Platinum Optimizer?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Assolutamente sì. Tutte le ottimizzazioni sono testate e sicure. Non modifichiamo file di sistema critici e tutte le operazioni sono reversibili.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Funziona con il mio antivirus?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sì, funziona con tutti i principali antivirus. In caso di falsi positivi, aggiungi semplicemente l'eseguibile alle eccezioni.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Quali versioni di Windows sono supportate?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Windows 10 e Windows 11, sia versioni 64-bit che 32-bit.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-question">
+                        <h3>Come funziona il supporto remoto?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Per gli utenti Tweak 5.0, offriamo supporto remoto via Telegram per ottimizzazioni personalizzate e risoluzione problemi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">⚡</div>
+                        <span>Platinum Optimizer</span>
+                    </div>
+                    <p class="footer-description">
+                        Ottimizzazioni avanzate per Windows - Sviluppato con tecnologia all'avanguardia 
+                        per la community gaming e professionale mondiale
+                    </p>
+                    <div class="social-links">
+                        <a href="https://t.me/c/2589647133/105" class="social-link" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=e01xlBksBrI" class="social-link" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Prodotto</h4>
+                        <a href="#features">Funzionalità</a>
+                        <a href="#benchmarks">Benchmark</a>
+                        <a href="#pricing">Prezzi</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Supporto</h4>
+                        <a href="#contact">Contatti</a>
+                        <a href="https://t.me/c/2589647133/242" target="_blank">Documentazione</a>
+                        <a href="https://www.youtube.com/watch?v=e01xlBksBrI" target="_blank">Tutorial</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Platinum Optimizer. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
